@@ -11,3 +11,8 @@ html, body, #app {
 body {
     @apply font-sans;
 }
+
+#app {
+    background: url("@/assets/images/wallpapers/1.jpg");
+    background-size: cover;
+}
