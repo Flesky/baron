@@ -9,6 +9,7 @@ import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+// import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -37,7 +38,10 @@ export default defineConfig({
       ],
       vueTemplate: true,
     }),
-    Icons(),
+    Icons({ compiler: 'vue3' }),
+    // VitePWA({
+    //   registerType: 'autoUpdate',
+    // }),
   ],
   resolve: {
     alias: {

@@ -11,8 +11,6 @@ declare module '@vue/runtime-core' {
     AppShell: typeof import('./src/components/app-shell.vue')['default']
     IconButton: typeof import('./src/components/icon-button.vue')['default']
     MArrowBackIosNew: typeof import('~icons/material-symbols/arrow-back-ios-new')['default']
-    MBackspace: typeof import('~icons/material-symbols/backspace')['default']
-    MBackspaceOutline: typeof import('~icons/material-symbols/backspace-outline')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
