@@ -38,7 +38,10 @@ export default defineConfig({
       ],
       vueTemplate: true,
     }),
-    Icons({ compiler: 'vue3' }),
+    Icons({
+      compiler: 'vue3',
+      defaultClass: 'text-2xl',
+    }),
     // VitePWA({
     //   registerType: 'autoUpdate',
     // }),

@@ -24,7 +24,7 @@ const isHome = computed(() => route.path === '/')
     </router-view>
     <div class="fixed bottom-0 z-20 flex h-12 w-full shrink-0 items-center justify-center">
       <icon-button class="p-2" @click="push('/')">
-        <m-arrow-back-ios-new />
+        <m-chevron-left />
       </icon-button>
     </div>
   </div>

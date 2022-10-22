@@ -88,34 +88,36 @@ watch(query, (value) => {
 </script>
 
 <template>
-  <app-shell class="flex-col gap-2 bg-white p-4">
-    <div class="flex w-full grow-[2] flex-col justify-center break-words text-right align-middle text-5xl font-light">
-      {{ query }}
-    </div>
-    <div class="shrink grow-[1] break-words text-right text-3xl font-light">
-      <!-- eslint-disable-next-line -->
-      {{ ' ' }}
-      <span v-if="error" class="text-red-600/50">
-        Can't evaluate expression
-      </span>
-      <span v-else class="font-light text-black/50">
-        {{ preview }}
-      </span>
-    </div>
-    <div class="grid h-max grid-cols-4 grid-rows-4 place-items-center gap-2.5">
-      <icon-button
-        v-for="key in keys"
-        :key="key"
-        class="aspect-square w-full max-w-[96px] rounded-full bg-gray-200 text-3xl"
-        :class="{
-          'bg-gray-600 text-white': key === '/' || key === '*' || key === '-' || key === '+',
-          '!bg-green-600 text-white': key === '=',
-          'bg-red-600 text-white': key === 'C' || key === 'AC',
-        }"
-        @click="handleClick(key)"
-      >
-        {{ key }}
-      </icon-button>
-    </div>
+  <app-shell>
+    <app-container class="gap-2 px-4">
+      <div class="flex w-full grow-[2] flex-col justify-center break-words text-right align-middle text-5xl font-light">
+        {{ query }}
+      </div>
+      <div class="shrink grow-[1] break-words text-right text-3xl font-light">
+        <!-- eslint-disable-next-line -->
+        {{ ' ' }}
+        <span v-if="error" class="text-red-600/50">
+          Can't evaluate expression
+        </span>
+        <span v-else class="font-light text-black/50">
+          {{ preview }}
+        </span>
+      </div>
+      <div class="grid h-max grid-cols-4 grid-rows-4 place-items-center gap-2.5">
+        <icon-button
+          v-for="key in keys"
+          :key="key"
+          class="aspect-square w-full max-w-[96px] rounded-full bg-gray-200 text-3xl"
+          :class="{
+            'bg-gray-600 text-white': key === '/' || key === '*' || key === '-' || key === '+',
+            '!bg-green-600 text-white': key === '=',
+            'bg-red-600 text-white': key === 'C' || key === 'AC',
+          }"
+          @click="handleClick(key)"
+        >
+          {{ key }}
+        </icon-button>
+      </div>
+    </app-container>
   </app-shell>
 </template>
