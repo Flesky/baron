@@ -1,32 +1,34 @@
 <script setup lang="ts">
-const formatted = useDateFormat(useNow(), 'h:mm A')
-
+const time = useDateFormat(useNow(), 'h:mm A')
+const { back } = useRouter()
 const route = useRoute()
-const transformOrigin = ref()
 const { x, y } = useMouse()
+const transformOrigin = ref()
 function setMousePosition() {
   transformOrigin.value = `${x.value}px ${y.value}px`
 }
-const isHome = computed(() => {
-  return route.path === '/'
-})
+const isHome = computed(() => route.path === '/')
 </script>
 
 <template>
-  <div class="flex min-h-full flex-col">
-    <div class="flex h-8 shrink-0 items-center justify-center transition duration-300" :class="{ 'bg-black text-white': !isHome }">
+  <div class="h-full">
+    <div class="fixed top-0 z-20 flex h-8 w-full shrink-0 items-center justify-center transition duration-300">
       <div>
-        {{ formatted }}
+        {{ time }}
       </div>
     </div>
-    <main class="relative flex grow">
+    <main class="min-h-full">
       <router-view v-slot="{ Component }">
         <transition :name="isHome ? 'close-app' : 'open-app'" @before-enter="setMousePosition">
           <component :is="Component" />
         </transition>
       </router-view>
     </main>
-    <div class="fixed bottom-0 z-10 h-12 w-full shrink-0" />
+    <div class="fixed bottom-0 z-20 flex h-12 w-full shrink-0 items-center justify-center">
+      <icon class="p-2" @click="back()">
+        <m-arrow-back-ios-new />
+      </icon>
+    </div>
   </div>
 </template>
 
