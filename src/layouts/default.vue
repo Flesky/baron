@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const time = useDateFormat(useNow(), 'h:mm A')
-const { back } = useRouter()
+const { push } = useRouter()
 const route = useRoute()
 const { x, y } = useMouse()
 const transformOrigin = ref()
@@ -17,17 +17,15 @@ const isHome = computed(() => route.path === '/')
         {{ time }}
       </div>
     </div>
-    <main class="min-h-full">
-      <router-view v-slot="{ Component }">
-        <transition :name="isHome ? 'close-app' : 'open-app'" @before-enter="setMousePosition">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </main>
+    <router-view v-slot="{ Component }">
+      <transition :name="isHome ? 'close-app' : 'open-app'" @before-enter="setMousePosition">
+        <component :is="Component" />
+      </transition>
+    </router-view>
     <div class="fixed bottom-0 z-20 flex h-12 w-full shrink-0 items-center justify-center">
-      <icon class="p-2" @click="back()">
+      <icon-button class="p-2" @click="push('/')">
         <m-arrow-back-ios-new />
-      </icon>
+      </icon-button>
     </div>
   </div>
 </template>
@@ -45,7 +43,7 @@ const isHome = computed(() => route.path === '/')
   transform-origin: v-bind('transformOrigin');
 }
 .open-app-leave-active {
-  @apply z-0
+  @apply z-0 opacity-0;
 }
 .open-app-enter-from {
   @apply scale-0;

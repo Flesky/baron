@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute inset-0 flex grow pt-8 pb-12">
+  <main class="absolute inset-0 flex min-h-full pt-8 pb-12">
     <slot />
-  </div>
+  </main>
 </template>

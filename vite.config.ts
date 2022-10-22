@@ -21,6 +21,7 @@ export default defineConfig({
         HeadlessUiResolver(),
         IconsResolver({
           prefix: false,
+          enabledCollections: ['material-symbols'],
           alias: {
             m: 'material-symbols',
           },

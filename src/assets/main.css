@@ -4,6 +4,12 @@
 @tailwind utilities;
 @tailwind components;
 
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
 html, body, #app {
     @apply h-full;
 }
@@ -15,4 +21,8 @@ body {
 #app {
     background: url("@/assets/images/wallpapers/1.jpg");
     background-size: cover;
+}
+
+div {
+    @apply select-none
 }
