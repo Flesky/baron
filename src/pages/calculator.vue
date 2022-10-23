@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { vOnLongPress } from '@vueuse/components'
-import type { MathNode } from 'mathjs/number'
+import type { MathNode, OperatorNode } from 'mathjs'
 import {
   addDependencies,
   create,
@@ -10,10 +9,9 @@ import {
   parseDependencies,
   subtractDependencies,
   unaryMinusDependencies,
+} from 'mathjs'
 
-} from 'mathjs/number'
-
-const keys = [
+const keys: string[] = [
   '(', ')', 'AC', 'C',
   '7', '8', '9', '/',
   '4', '5', '6', '*',
@@ -23,11 +21,12 @@ const keys = [
 const query = ref<string>('')
 const preview = ref<string | false>('')
 const error = ref <boolean>(false)
-const { parse, evaluate } = create({
-  addDependencies, subtractDependencies, multiplyDependencies, divideDependencies, parseDependencies, evaluateDependencies, unaryMinusDependencies,
+const { parse, evaluate } = create({ addDependencies, subtractDependencies, multiplyDependencies, divideDependencies, parseDependencies, evaluateDependencies, unaryMinusDependencies }, {
+  number: 'BigNumber',
+  precision: 12,
 })
 
-function handleClick(key: string) {
+function handleClick(key: string): void {
   switch (key) {
     case '=':
       if (query.value.trim()) {
@@ -65,7 +64,7 @@ watch(query, (value) => {
             constants = true
             break
           case 'OperatorNode':
-            if (node.fn === 'unaryMinus' || node.fn === 'unaryPlus')
+            if ((node as OperatorNode).fn === 'unaryMinus' || (node as OperatorNode).fn === 'unaryPlus')
               break
             operation = true
             break
@@ -95,22 +94,22 @@ watch(query, (value) => {
       </div>
       <div class="shrink grow-[1] break-words text-right text-3xl font-light">
         <!-- eslint-disable-next-line -->
-        {{ ' ' }}
+        {{ !preview ? ' ' : '' }}
         <span v-if="error" class="text-red-600/50">
-          Can't evaluate expression
+          Syntax error
         </span>
         <span v-else class="font-light text-black/50">
           {{ preview }}
         </span>
       </div>
-      <div class="grid h-max grid-cols-4 grid-rows-4 place-items-center gap-2.5">
+      <div class="grid h-max grid-cols-4 grid-rows-5 place-items-center gap-2">
         <icon-button
           v-for="key in keys"
           :key="key"
           class="aspect-square w-full max-w-[96px] rounded-full bg-gray-200 text-3xl"
           :class="{
             'bg-gray-600 text-white': key === '/' || key === '*' || key === '-' || key === '+',
-            '!bg-green-600 text-white': key === '=',
+            'bg-green-600 text-white': key === '=',
             'bg-red-600 text-white': key === 'C' || key === 'AC',
           }"
           @click="handleClick(key)"
