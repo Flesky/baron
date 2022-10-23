@@ -88,17 +88,17 @@ watch(query, (value) => {
 
 <template>
   <app-shell>
-    <app-container class="gap-2 px-4">
+    <app-layout class="gap-2 px-4 pb-2">
       <div class="flex w-full grow-[2] flex-col justify-center break-words text-right align-middle text-5xl font-light">
         {{ query }}
       </div>
-      <div class="shrink grow-[1] break-words text-right text-3xl font-light">
+      <div class="shrink grow break-words text-right text-3xl font-light">
         <!-- eslint-disable-next-line -->
         {{ !preview ? ' ' : '' }}
         <span v-if="error" class="text-red-600/50">
           Syntax error
         </span>
-        <span v-else class="font-light text-black/50">
+        <span v-else class="font-light text-gray-500">
           {{ preview }}
         </span>
       </div>
@@ -106,17 +106,17 @@ watch(query, (value) => {
         <icon-button
           v-for="key in keys"
           :key="key"
-          class="aspect-square w-full max-w-[96px] rounded-full bg-gray-200 text-3xl"
+          class="aspect-square w-full max-w-[96px] rounded-full bg-gray-200 text-3xl dark:bg-gray-500"
           :class="{
-            'bg-gray-600 text-white': key === '/' || key === '*' || key === '-' || key === '+',
-            'bg-green-600 text-white': key === '=',
-            'bg-red-600 text-white': key === 'C' || key === 'AC',
+            'bg-gray-600 text-white dark:!bg-gray-700': key === '/' || key === '*' || key === '-' || key === '+',
+            'bg-green-600 dark:!bg-green-800 text-white': key === '=',
+            'bg-red-600 dark:!bg-red-800 text-white': key === 'C' || key === 'AC',
           }"
           @click="handleClick(key)"
         >
           {{ key }}
         </icon-button>
       </div>
-    </app-container>
+    </app-layout>
   </app-shell>
 </template>

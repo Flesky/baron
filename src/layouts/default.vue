@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const time = useDateFormat(useNow(), 'h:mm A')
+const time = useDateFormat(useNow(), 'h:mm')
 const { push } = useRouter()
 const route = useRoute()
 const { x, y } = useMouse()
@@ -11,8 +11,8 @@ const isHome = computed(() => route.path === '/')
 </script>
 
 <template>
-  <div class="h-full">
-    <div class="fixed top-0 z-20 flex h-8 w-full shrink-0 items-center justify-center transition duration-300">
+  <div class="h-full transition-colors dark:bg-black/25">
+    <div class="fixed top-0 z-20 flex h-8 w-full shrink-0 items-center justify-center">
       <div>
         {{ time }}
       </div>
@@ -22,7 +22,7 @@ const isHome = computed(() => route.path === '/')
         <component :is="Component" />
       </transition>
     </router-view>
-    <div class="fixed bottom-0 z-20 flex h-12 w-full shrink-0 items-center justify-center">
+    <div class="fixed bottom-0 z-20 flex h-10 w-full shrink-0 items-center justify-center">
       <icon-button class="p-2" @click="push('/')">
         <m-chevron-left />
       </icon-button>

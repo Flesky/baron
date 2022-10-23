@@ -15,11 +15,11 @@ html, body, #app {
 }
 
 body {
-    @apply font-sans;
+    @apply font-sans text-black dark:text-white;
 }
 
 #app {
-    background: url("@/assets/images/wallpapers/1.jpg");
+    background: url("@/assets/images/wallpapers/1.webp");
     background-size: cover;
 }
 

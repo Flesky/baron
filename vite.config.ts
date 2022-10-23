@@ -40,7 +40,7 @@ export default defineConfig({
     }),
     Icons({
       compiler: 'vue3',
-      defaultClass: 'text-2xl',
+      defaultClass: 'text-2xl stroke-2',
     }),
     // VitePWA({
     //   registerType: 'autoUpdate',
