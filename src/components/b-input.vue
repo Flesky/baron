@@ -5,5 +5,5 @@ const data = useVModel(props, 'modelValue', emit)
 </script>
 
 <template>
-  <input v-model="data" class="rounded border border-gray-7 bg-gray-3 py-1 px-2 text-sm ring-blue-7 transition focus:border-blue-7 focus:outline-none focus:ring-1">
+  <input v-model="data" class="rounded border border-gray-7 bg-gray-3 py-1 px-2 text-sm text-black ring-blue-7 transition focus:border-blue-7 focus:outline-none focus:ring-1 dark:border-gray-d7">
 </template>
