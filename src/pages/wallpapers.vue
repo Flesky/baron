@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <app-shell title="Select a wallpaper">
-    <app-container />
-  </app-shell>
+  <app-container title="Select a wallpaper">
+    <app-content />
+  </app-container>
 </template>

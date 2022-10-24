@@ -12,7 +12,7 @@ import {
 } from 'mathjs'
 
 const keys: string[] = [
-  '(', ')', 'AC', 'C',
+  'AC', '%', '(', ')',
   '7', '8', '9', '/',
   '4', '5', '6', '*',
   '1', '2', '3', '-',
@@ -87,36 +87,40 @@ watch(query, (value) => {
 </script>
 
 <template>
-  <app-shell>
-    <app-layout class="gap-2 px-4 pb-2">
-      <div class="flex w-full grow-[2] flex-col justify-center break-words text-right align-middle text-5xl font-light">
-        {{ query }}
-      </div>
-      <div class="shrink grow break-words text-right text-3xl font-light">
+  <app-container>
+    <app-content class="gap-2 px-4 pb-2">
+      <div class="flex w-full grow-[2] flex-col justify-center break-words align-middle text-5xl font-light">
         <!-- eslint-disable-next-line -->
-        {{ !preview ? ' ' : '' }}
-        <span v-if="error" class="text-red-600/50">
+        {{ query ? query : ' ' }}
+      </div>
+      <div class="flex shrink grow items-center justify-between break-words font-light">
+        <span v-if="error" class="text-3xl">
           Syntax error
         </span>
-        <span v-else class="font-light text-gray-500">
+        <span v-else class="text-3xl font-light text-gray-500">
           {{ preview }}
         </span>
+        <b-icon @click="handleClick('C')">
+          <m-backspace />
+        </b-icon>
       </div>
-      <div class="grid h-max grid-cols-4 grid-rows-5 place-items-center gap-2">
-        <icon-button
+      <div class="grid h-max grid-cols-4 grid-rows-5 place-items-center gap-2.5">
+        <b-icon
           v-for="key in keys"
           :key="key"
-          class="aspect-square w-full max-w-[96px] rounded-full bg-gray-200 text-3xl dark:bg-gray-500"
+          class="aspect-square w-full max-w-[96px] rounded-full bg-gray-4 text-3xl active:bg-gray-6 dark:bg-gray-d4 dark:active:bg-gray-d6"
           :class="{
-            'bg-gray-600 text-white dark:!bg-gray-700': key === '/' || key === '*' || key === '-' || key === '+',
-            'bg-green-600 dark:!bg-green-800 text-white': key === '=',
-            'bg-red-600 dark:!bg-red-800 text-white': key === 'C' || key === 'AC',
+            'bg-gray-9 dark:bg-gray-d9 text-white active:!bg-gray-10 dark:active:!bg-gray-d10': [
+              '+', '-', '*', '/', '%', '(', ')',
+            ].includes(key),
+            'bg-green-9 dark:bg-green-d8 text-white active:!bg-green-10 dark:active:!bg-green-d9': key === '=',
+            'bg-red-9 dark:bg-red-d8 text-white active:!bg-red-10 dark:active:!bg-red-d9': key === 'AC',
           }"
           @click="handleClick(key)"
         >
           {{ key }}
-        </icon-button>
+        </b-icon>
       </div>
-    </app-layout>
-  </app-shell>
+    </app-content>
+  </app-container>
 </template>

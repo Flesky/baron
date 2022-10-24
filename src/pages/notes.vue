@@ -2,8 +2,12 @@
 </script>
 
 <template>
-  <app-shell title="Notes">
-    <template #actionRight />
-    <app-layout />
-  </app-shell>
+  <app-container title="Notes">
+    <template #actionRight>
+      <b-icon>
+        <m-draw-outline />
+      </b-icon>
+    </template>
+    <app-content />
+  </app-container>
 </template>

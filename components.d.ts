@@ -8,15 +8,16 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppContainer: typeof import('./src/components/app-container.vue')['default']
+    AppContent: typeof import('./src/components/app-content.vue')['default']
     AppIcon: typeof import('./src/components/home/app-icon.vue')['default']
-    AppLayout: typeof import('./src/components/app-layout.vue')['default']
-    AppShell: typeof import('./src/components/app-shell.vue')['default']
-    IconButton: typeof import('./src/components/icon-button.vue')['default']
-    MAdd: typeof import('~icons/material-symbols/add')['default']
+    BIcon: typeof import('./src/components/b-icon.vue')['default']
+    BInput: typeof import('./src/components/b-input.vue')['default']
+    MBackspace: typeof import('~icons/material-symbols/backspace')['default']
     MChevronLeft: typeof import('~icons/material-symbols/chevron-left')['default']
-    MNoteAdd: typeof import('~icons/material-symbols/note-add')['default']
-    MNoteAddOutline: typeof import('~icons/material-symbols/note-add-outline')['default']
-    MSpa: typeof import('~icons/material-symbols/spa')['default']
+    MDrawOutline: typeof import('~icons/material-symbols/draw-outline')['default']
+    MFiberManualRecordOutline: typeof import('~icons/material-symbols/fiber-manual-record-outline')['default']
+    MHomeOutlineRounded: typeof import('~icons/material-symbols/home-outline-rounded')['default']
+    MInfoOutline: typeof import('~icons/material-symbols/info-outline')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
