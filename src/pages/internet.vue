@@ -19,7 +19,7 @@ function goHome() {
 }
 
 function go() {
-  validator.validate({ url: url.value }, (errors, fields) => {
+  validator.validate({ url: url.value }, (errors) => {
     if (errors)
       src.value = `https://www.google.com/search?q=${encodeURI(url.value)}&igu=1`
 
@@ -29,22 +29,22 @@ function go() {
 }
 
 function showInfo() {
-  alert('This is not a real browser. Most websites won\'t work and it\'s insecure. Please refrain from using this for anything other than having fun.')
+  alert('This is not a real browser. A lot of websites won\'t work and it\'s insecure. Please refrain from using this for anything other than having fun.')
 }
 </script>
 
 <template>
   <app-container title="Internet">
     <template #header>
-      <b-icon class="ml-2" @click="goHome()">
+      <b-icon @click="goHome()">
         <m-home-outline-rounded />
       </b-icon>
       <b-input v-model="url" type="url" class="grow" placeholder="Search Google or type a URL" @keyup.enter="go()" />
-      <b-icon class="mr-2" @click="showInfo()">
+      <b-icon @click="showInfo()">
         <m-info-outline />
       </b-icon>
     </template>
-    <app-content class="max-w-none">
+    <app-content embedded>
       <iframe ref="iframe" referrerpolicy="no-referrer" class="h-full" :src="src" />
     </app-content>
   </app-container>

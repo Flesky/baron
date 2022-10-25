@@ -4,11 +4,11 @@
       <h1 class="text-4xl text-blue-11 dark:text-blue-d11">
         baron<span class="font-bold">OS</span>
       </h1>
-      <p class="mt-2">
+      <div class="mt-2">
         A fun, intuitive mobile experience.
-      </p>
+      </div>
       <p class="mt-6">
-        This is a work in progress. Please check back later.
+        This is a work in progress. Check back later.
       </p>
     </app-content>
   </app-container>

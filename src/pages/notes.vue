@@ -5,7 +5,7 @@
   <app-container title="Notes">
     <template #actionRight>
       <b-icon>
-        <m-draw-outline />
+        <m-add />
       </b-icon>
     </template>
     <app-content />

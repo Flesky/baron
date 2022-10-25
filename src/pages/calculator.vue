@@ -18,6 +18,18 @@ const keys: string[] = [
   '1', '2', '3', '-',
   '0', '.', '=', '+',
 ]
+function keyStyles(key: string) {
+  if ([
+    '+', '-', '*', '/', '%', '(', ')',
+  ].includes(key))
+    return 'bg-gray-9 dark:bg-gray-d9 text-white active:bg-gray-10 dark:active:bg-gray-d10'
+  else if (key === '=')
+    return 'bg-green-9 dark:bg-green-d8 text-white active:bg-green-10 dark:active:bg-green-d9'
+  else if (key === 'AC')
+    return 'bg-red-9 dark:bg-red-d8 text-white active:bg-red-10 dark:active:bg-red-d9'
+  else return 'border border-gray-7 bg-gray-3 active:bg-gray-6 dark:border-gray-d7 dark:bg-gray-d4 dark:active:bg-gray-d7'
+}
+
 const query = ref<string>('')
 const preview = ref<string | false>('')
 const error = ref <boolean>(false)
@@ -108,14 +120,8 @@ watch(query, (value) => {
         <b-icon
           v-for="key in keys"
           :key="key"
-          class="aspect-square w-full max-w-[96px] rounded-full bg-gray-4 text-3xl active:bg-gray-6 dark:bg-gray-d4 dark:active:bg-gray-d6"
-          :class="{
-            'bg-gray-9 dark:bg-gray-d9 text-white active:!bg-gray-10 dark:active:!bg-gray-d10': [
-              '+', '-', '*', '/', '%', '(', ')',
-            ].includes(key),
-            'bg-green-9 dark:bg-green-d8 text-white active:!bg-green-10 dark:active:!bg-green-d9': key === '=',
-            'bg-red-9 dark:bg-red-d8 text-white active:!bg-red-10 dark:active:!bg-red-d9': key === 'AC',
-          }"
+          class="aspect-square w-full max-w-[96px] rounded-full  text-3xl"
+          :class="keyStyles(key)"
           @click="handleClick(key)"
         >
           {{ key }}

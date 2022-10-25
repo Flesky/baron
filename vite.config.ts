@@ -22,8 +22,9 @@ export default defineConfig({
         HeadlessUiResolver(),
         IconsResolver({
           prefix: false,
-          enabledCollections: ['material-symbols'],
+          enabledCollections: ['ion', 'material-symbols'],
           alias: {
+            i: 'ion',
             m: 'material-symbols',
           },
         }),
@@ -40,7 +41,7 @@ export default defineConfig({
     }),
     Icons({
       compiler: 'vue3',
-      defaultClass: 'text-2xl stroke-2',
+      defaultClass: 'text-2xl',
     }),
     // VitePWA({
     //   registerType: 'autoUpdate',
