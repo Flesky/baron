@@ -1,8 +1,8 @@
 <template>
   <app-container title="About">
     <template #default>
-      <app-content class="px-4">
-        <section class="flex flex-col items-center pt-8">
+      <app-content class="px-4 py-6">
+        <section class="flex flex-col items-center">
           <img class="aspect-square h-32 w-32 rounded-full" src="@/assets/images/me.jpg" alt="Baron">
           <h1 class="mt-4">
             Baron
@@ -28,8 +28,8 @@
           </ul>
         </section>
       </app-content>
-      <app-content class="px-4">
-        <section class="mt-6">
+      <app-content class="px-4 py-6">
+        <section>
           <h1>
             Featured
           </h1>
