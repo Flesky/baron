@@ -12,8 +12,8 @@ const hasTabs = inject('has-tabs', false)
 <template>
   <Component
     :is="hasTabs ? TabPanel : 'main'"
-    class="flex w-full grow flex-col"
-    :class="{ 'max-w-screen-sm': !embedded, 'mt-12': hasHeader }"
+    class="flex w-full grow flex-col overflow-y-auto"
+    :class="{ 'max-w-screen-sm': !embedded, 'mt-12': hasHeader, 'mb-14': hasTabs }"
     :as="hasTabs ? 'main' : undefined"
   >
     <slot />
