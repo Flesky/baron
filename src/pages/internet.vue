@@ -36,13 +36,13 @@ function showInfo() {
 <template>
   <app-container title="Internet">
     <template #header>
-      <b-icon @click="goHome()">
+      <button class="icon" @click="goHome()">
         <m-home-outline-rounded />
-      </b-icon>
+      </button>
       <b-input v-model="url" type="url" class="grow" placeholder="Search Google or type a URL" @keyup.enter="go()" />
-      <b-icon @click="showInfo()">
+      <button class="icon" @click="showInfo()">
         <m-info-outline />
-      </b-icon>
+      </button>
     </template>
     <app-content embedded>
       <iframe ref="iframe" referrerpolicy="no-referrer" class="h-full" :src="src" />

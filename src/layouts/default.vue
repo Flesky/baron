@@ -11,7 +11,7 @@ const isHome = computed(() => route.path === '/')
 </script>
 
 <template>
-  <div class="h-full transition-colors dark:bg-gray-d1/25">
+  <div class="relative h-full transition-colors dark:bg-gray-d1/25">
     <div class="fixed top-0 z-20 flex h-8 w-full shrink-0 items-center justify-center">
       <div>
         {{ time }}
@@ -24,14 +24,14 @@ const isHome = computed(() => route.path === '/')
         </keep-alive>
       </transition>
     </router-view>
-    <div class="fixed bottom-0 z-20 h-12 w-full">
-      <div class="mx-auto grid max-w-sm grid-cols-3  place-items-center">
-        <b-icon class="p-2" @click="!isHome && go(-1)">
+    <div class="fixed bottom-0 z-20 flex h-12 w-full">
+      <div class="mx-auto grid max-w-sm grid-cols-3 gap-16">
+        <button class="icon p-2" @click="!isHome && go(-1)">
           <m-chevron-left />
-        </b-icon>
-        <b-icon class="p-2" @click="push('/')">
+        </button>
+        <button class="icon p-2" @click="push('/')">
           <m-fiber-manual-record-outline />
-        </b-icon>
+        </button>
       </div>
     </div>
   </div>

@@ -4,9 +4,9 @@
 <template>
   <app-container title="Notes">
     <template #actionRight>
-      <b-icon>
+      <button class="icon">
         <m-add />
-      </b-icon>
+      </button>
     </template>
     <app-content />
   </app-container>

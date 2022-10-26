@@ -5,7 +5,6 @@ defineProps<{
   embedded?: boolean
 }>()
 
-const hasHeader = inject('has-header', false)
 const hasTabs = inject('has-tabs', false)
 </script>
 
@@ -13,7 +12,7 @@ const hasTabs = inject('has-tabs', false)
   <Component
     :is="hasTabs ? TabPanel : 'main'"
     class="flex w-full grow flex-col overflow-y-auto"
-    :class="{ 'max-w-screen-sm': !embedded, 'mt-12': hasHeader, 'mb-14': hasTabs }"
+    :class="{ 'max-w-screen-sm': !embedded }"
     :as="hasTabs ? 'main' : undefined"
   >
     <slot />

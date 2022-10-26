@@ -1,0 +1,18 @@
+[
+  {
+    "key": "pasada",
+    "banner": "/images/banners/pasada.png",
+
+    "title": "PASADA",
+    "subtitle": "DOST-sponsored project",
+    "icon": "/images/icons/pasada.svg",
+    "iconPadding": true,
+    "description": "An enterprise-level web application for learning management and driver performance monitoring of modern jeepney and bus drivers."
+  },
+  {
+    "key": "worden",
+    "title": "Worden",
+    "icon": "/images/icons/worden.png",
+    "description": "A minimal Wordle clone. Guess the secret word in six tries and share your results to your friends."
+  }
+]

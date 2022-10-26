@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { vOnLongPress } from '@vueuse/components'
 import type { MathNode, OperatorNode } from 'mathjs'
 import {
   addDependencies,
@@ -12,23 +13,12 @@ import {
 } from 'mathjs'
 
 const keys: string[] = [
-  'AC', '%', '(', ')',
-  '7', '8', '9', '/',
-  '4', '5', '6', '*',
-  '1', '2', '3', '-',
-  '0', '.', '=', '+',
+  '(', ')', '^', '/',
+  '7', '8', '9', '*',
+  '4', '5', '6', '-',
+  '1', '2', '3', '+',
+  '0', '.', '%', '=',
 ]
-function keyStyles(key: string) {
-  if ([
-    '+', '-', '*', '/', '%', '(', ')',
-  ].includes(key))
-    return 'bg-gray-9 dark:bg-gray-d9 text-white active:bg-gray-10 dark:active:bg-gray-d10'
-  else if (key === '=')
-    return 'bg-green-9 dark:bg-green-d8 text-white active:bg-green-10 dark:active:bg-green-d9'
-  else if (key === 'AC')
-    return 'bg-red-9 dark:bg-red-d8 text-white active:bg-red-10 dark:active:bg-red-d9'
-  else return 'border border-gray-7 bg-gray-3 active:bg-gray-6 dark:border-gray-d7 dark:bg-gray-d4 dark:active:bg-gray-d7'
-}
 
 const query = ref<string>('')
 const preview = ref<string | false>('')
@@ -53,13 +43,14 @@ function handleClick(key: string): void {
     case 'C':
       query.value = query.value.slice(0, -1)
       break
-    case 'AC':
-      query.value = ''
-      break
     default:
       query.value += key
       break
   }
+}
+
+function handleClear(): void {
+  query.value = ''
 }
 
 // Some sophisticated logic to show a preview of the result...
@@ -100,32 +91,36 @@ watch(query, (value) => {
 
 <template>
   <app-container>
-    <app-content class="gap-2 px-4 pb-2">
-      <div class="flex w-full grow-[2] flex-col justify-center break-words align-middle text-5xl font-light">
+    <app-content class="gap-2 px-4 ">
+      <div class="flex w-full grow-[2] flex-col justify-center break-words text-5xl font-light">
         <!-- eslint-disable-next-line -->
         {{ query ? query : ' ' }}
       </div>
-      <div class="flex shrink grow items-center justify-between break-words font-light">
-        <span v-if="error" class="text-3xl">
+      <div class="flex grow items-center justify-between break-words font-light">
+        <span v-if="error" class="text-3xl text-red-11 dark:text-red-d11">
           Syntax error
         </span>
         <span v-else class="text-3xl font-light text-gray-500">
           {{ preview }}
         </span>
-        <b-icon @click="handleClick('C')">
-          <m-backspace />
-        </b-icon>
+        <button v-on-long-press="handleClear" class="icon" @click="handleClick('C')">
+          <m-backspace-outline />
+        </button>
       </div>
       <div class="grid h-max grid-cols-4 grid-rows-5 place-items-center gap-2.5">
-        <b-icon
+        <button
           v-for="key in keys"
           :key="key"
-          class="aspect-square w-full max-w-[96px] rounded-full  text-3xl"
-          :class="keyStyles(key)"
+          class="icon aspect-square w-full max-w-[96px] rounded-full text-3xl"
+          :class="
+            [key === '=' ? '!bg-green-9 dark:!bg-green-d9 text-white active:!bg-green-10 dark:active:!bg-green-d10'
+               : 'bg-gray-3 active:bg-gray-6 dark:border-gray-d7 dark:bg-gray-d4 dark:active:bg-gray-d7',
+             { 'text-green-9 dark:text-green-d9': ['+', '-', '*', '/', '^', '(', ')', '^'].includes(key) }]
+          "
           @click="handleClick(key)"
         >
           {{ key }}
-        </b-icon>
+        </button>
       </div>
     </app-content>
   </app-container>

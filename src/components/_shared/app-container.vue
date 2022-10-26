@@ -6,8 +6,6 @@ const props = defineProps<{
 
 const slots = useSlots()
 const hasHeader = slots.header || props.title
-if (hasHeader)
-  provide('has-header', true)
 const hasFooter = slots.footer
 if (hasFooter)
   provide('has-tabs', true)
@@ -16,7 +14,7 @@ const gridColumns = `grid-template-columns: repeat(${props.tabs || 0}, minmax(0,
 </script>
 
 <template>
-  <div class="absolute inset-0 flex min-h-full flex-col items-center bg-gray-1 pt-8 pb-12 dark:bg-gray-d1">
+  <div class="absolute inset-0 flex min-h-full flex-col items-center bg-gray-1 dark:bg-gray-d1" :class="{ 'pt-8': !hasHeader, 'pb-12': !hasFooter }">
     <header
       v-if="hasHeader" class="top-0 flex h-20 border-b px-2 pt-8"
     >
@@ -52,6 +50,6 @@ const gridColumns = `grid-template-columns: repeat(${props.tabs || 0}, minmax(0,
 
 <style scoped>
 header, footer {
-  @apply fixed w-full shrink-0 justify-center bg-gray-2 border-gray-4 dark:border-t dark:border-gray-d4 dark:bg-gray-d2
+  @apply w-full shrink-0 justify-center bg-gray-2 border-gray-4 dark:border-t dark:border-gray-d4 dark:bg-gray-d2
 }
 </style>

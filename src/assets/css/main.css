@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+@layer base {
+    h1 {
+        @apply text-2xl font-medium;
+    }
+    h2 {
+        @apply text-lg font-medium;
+    }
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+@layer utilities {
+    .light {
+        @apply text-gray-11 dark:text-gray-d11;
+    }
+}
+
+@layer components {
+    .icon {
+        @apply rounded-full p-1.5 transition-colors active:bg-gray-5 active:transition-none dark:active:bg-gray-d5
+    }
+    .card {
+        @apply select-text rounded-2xl bg-gray-3 p-4 dark:bg-gray-d3
+    }
+}
+
+html, body, #app {
+    @apply h-full;
+}
+
+body {
+    @apply select-none text-gray-12 dark:text-gray-d12;
+}
+
+#app {
+    background: url("/images/wallpapers/1.webp");
+    background-size: cover;
+}
